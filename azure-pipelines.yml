@@ -19,9 +19,9 @@ resources:
     type: github
     endpoint: github.com_mshiva70
     name: mshiva70/yam3
-    ref: main
+    ref: dev
     trigger:
-     - main
+     - dev
 
 stages:
 - stage: defaultStage
