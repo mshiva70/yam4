@@ -8,14 +8,14 @@ pool:
 
 resources:
   repositories:
-  - repository: self # The pipeline definition - trigger only on changes to this pipe
+  - repository: control # The pipeline definition - trigger only on changes to this pipe
     type: github
     endpoint: github.com_mshiva70
     name: mshiva70/CIdemoshiva
     ref: master
     trigger: 
      - main
-  - repository: control # The control-repo - should trigger on changes
+  - repository: self # The control-repo - should trigger on changes
     type: github
     endpoint: github.com_mshiva70
     name: mshiva70/yam4
