@@ -32,9 +32,8 @@ stages:
     workspace:
       clean: all # (outputs, resources, all)m
     steps:
-    - checkout: control
+    - checkout: self
       fetchDepth: 1
-      path: control
     - checkout: deps
       fetchDepth: 1
       path: deps
