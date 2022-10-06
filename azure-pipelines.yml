@@ -1,0 +1,57 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:sawd
+# https://aka.ms/yaml
+
+pool:
+  vmImage: ubuntu-latest
+
+resources:
+  repositories:
+  - repository: self # The pipeline definition - trigger only on changes to this pipe
+    type: github
+    endpoint: github.com_mshiva70
+    name: mshiva70/CIdemoshiva
+    ref: master
+    trigger: 
+     - main
+  - repository: control # The control-repo - should trigger on changes
+    type: github
+    endpoint: github.com_mshiva70
+    name: mshiva70/yam4
+    ref: main
+    trigger:
+     - main
+  - repository: deps
+    type: github
+    endpoint: github.com_mshiva70
+    name: mshiva70/yam3
+    ref: main
+    trigger:
+     - main
+
+stages:
+- stage: defaultStage
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: defaultJob
+    workspace:
+      clean: all # (outputs, resources, all)m
+    steps:
+    - checkout: control
+      fetchDepth: 1
+      path: control
+    - checkout: self
+      fetchDepth: 1
+      path: self
+    - checkout: deps
+      fetchDepth: 1
+      path: deps
+    
+    - task: CmdLine@2
+      inputs:
+        script: |
+          echo Write your commands here
+          
+          echo Hello world
