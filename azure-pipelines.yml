@@ -8,13 +8,6 @@ pool:
 
 resources:
   repositories:
-  - repository: control # The pipeline definition - trigger only on changes to this pipe
-    type: github
-    endpoint: github.com_mshiva70
-    name: mshiva70/CIdemoshiva
-    ref: master
-    trigger: 
-     - main
   - repository: self # The control-repo - should trigger on changes
     type: github
     endpoint: github.com_mshiva70
@@ -42,9 +35,6 @@ stages:
     - checkout: control
       fetchDepth: 1
       path: control
-    - checkout: self
-      fetchDepth: 1
-      path: self
     - checkout: deps
       fetchDepth: 1
       path: deps
